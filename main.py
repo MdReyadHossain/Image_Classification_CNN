@@ -10,8 +10,8 @@ import os
 import random
 import matplotlib.pyplot as plt
 
-DIRECTORY = r"E:\My Files\Reyad\Study\Coding\Python\Img_Classification_CNN\leaf"
-CATAGORIES = ['Strawberry_fresh', 'Strawberry_scrotch']
+DIRECTORY = r"E:\My Files\Reyad\Study\Coding\Python\Img_Classification_CNN\animals"
+CATAGORIES = ['cats', 'dogs']
 
 data = []
 
@@ -48,12 +48,9 @@ x = x/255 # scaling values within 0 to 1
 
 model = Sequential()
 
-# convolutional layer: set convolutional filter and image shape
-model.add(Conv2D(32, (3, 3), input_shape=x.shape[1:], activation='relu'))
-model.add(MaxPooling2D(pool_size=(2, 2))) # maxpooling layer: set pooling size
-
-model.add(Conv2D(32, (3, 3), input_shape=x.shape[1:], activation='relu'))
-model.add(MaxPooling2D(pool_size=(2, 2))) # maxpooling layer: set pooling size
+for i in range(2):
+    model.add(Conv2D(32, (3, 3), input_shape=x.shape[1:], activation='relu')) # convolutional layer: set convolutional filter and image shape
+    model.add(MaxPooling2D(pool_size=(2, 2))) # maxpooling layer: set pooling size
 
 model.add(Flatten())
 
@@ -61,4 +58,4 @@ model.add(Flatten())
 # where its defile as softwrap as activation function
 model.add(Dense(2, activation='softmax'))
 model.compile(loss='sparse_categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-model.fit(x, y, epochs=8, validation_split=0.1) # x = features(independent var) and y = label of this corresponding features(dependent var)
+model.fit(x, y, epochs=15, validation_split=0.1) # x = features(independent var) and y = label of this corresponding features(dependent var)
