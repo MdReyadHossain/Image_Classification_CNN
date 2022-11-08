@@ -10,13 +10,13 @@ import os
 import random
 import matplotlib.pyplot as plt
 
-DIRECTORY = r"E:\My Files\Reyad\Study\Coding\Python\Img_Classification_CNN\animals"
-CATAGORIES = ['cats', 'dogs']
+DIRECTORY = r"E:\My Files\Reyad\Study\Coding\Python\Img_Classification_CNN\leaf" # path of datasets folder
+CATAGORIES = ['Strawberry_fresh', 'Strawberry_scrotch'] # datasets folder name
 
 data = []
 
 for catagory in CATAGORIES:
-    folder = os.path.join(DIRECTORY, catagory) # connect the folder
+    folder = os.path.join(DIRECTORY, catagory) # connect the folder to the path
     # print(folder)
     label = CATAGORIES.index(catagory)
 
@@ -58,4 +58,4 @@ model.add(Flatten())
 # where its defile as softwrap as activation function
 model.add(Dense(2, activation='softmax'))
 model.compile(loss='sparse_categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-model.fit(x, y, epochs=15, validation_split=0.1) # x = features(independent var) and y = label of this corresponding features(dependent var)
+model.fit(x, y, epochs=5, validation_split=0.1) # x = features(independent var) and y = label of this corresponding features(dependent var)
